@@ -4,6 +4,7 @@ const util = require('util')
 class DataService {
 
     async filterData(params) {
+
         let aggregate = [
             {
                 "$project": {
@@ -15,28 +16,23 @@ class DataService {
             },
             {
                 "$match": {
-                        "totalCount": {
-                            "$gt": parseInt(params.minCount), "$lt": parseInt(params.maxCount)
-                        }
+                     "createdAt": 
+                     { 
+                         '$gt': new Date(params.startDate), 
+                         '$lt': new Date(params.endDate) 
+                     }
                 },
-                "$match": {
-                    "createdAt": { 
-                                "$gt": new Date(params.startDate), 
-                                "$lt": new Date(params.endDate) 
-                            }
+                "$match": {    
+                     
+                    "totalCount": 
+                     {  
+                         '$gt': parseInt(params.minCount), 
+                         '$lt': parseInt(params.maxCount) 
+                     } 
                 }
             }
         ];
-
-        console.dir(params,{depth:null});
-
-        // let countFilter = {};
-        // let dateFilter = {};
-        // countFilter.totalCount = { "$lt": params.maxCount, "$gt": params.minCount };
-        // dateFilter.createdAt = { "$gt": new Date(params.startDate), "$lt": new Date(params.endDate) };
-        // countFilter.totalCount = { "$gt": params.minCount, "$lt": params.maxCount };
-
-         return await Data.aggregate(aggregate).exec();
+        return await Data.aggregate(aggregate).exec();
     }
 }
 
