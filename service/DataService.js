@@ -16,21 +16,23 @@ class DataService {
             },
             {
                 "$match": {
-                     "createdAt": 
-                     { 
-                         '$gt': new Date(params.startDate), 
-                         '$lt': new Date(params.endDate) 
-                     }
-                },
-                "$match": {    
-                     
-                    "totalCount": 
-                     {  
-                         '$gt': parseInt(params.minCount), 
-                         '$lt': parseInt(params.maxCount) 
-                     } 
-                }
+                    "$and": [
+                     {
+                         "createdAt": 
+                        { 
+                            '$gt': new Date(params.startDate), 
+                            '$lt': new Date(params.endDate) 
+                        }
+                    }, 
+                    {   "totalCount": 
+                        {  
+                            '$gt': parseInt(params.minCount), 
+                            '$lt': parseInt(params.maxCount) 
+                        } 
+                    }
+                 ]                  
             }
+        }
         ]).exec();
     }
 }
