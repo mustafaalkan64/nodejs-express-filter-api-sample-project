@@ -5,7 +5,7 @@ class DataService {
 
     async filterData(params) {
 
-        let aggregate = [
+        return await Data.aggregate([
             {
                 "$project": {
                     "_id": 0,
@@ -31,8 +31,7 @@ class DataService {
                      } 
                 }
             }
-        ];
-        return await Data.aggregate(aggregate).exec();
+        ]).exec();
     }
 }
 
