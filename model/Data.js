@@ -12,9 +12,6 @@ const schemaModel = mongoose.Schema({
     },
     counts: {
         type: [Number]
-    },
-    value: {
-        type: String
     }
 });
 
