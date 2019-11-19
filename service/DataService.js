@@ -23,7 +23,15 @@ class DataService {
 
         console.dir(params,{depth:null});
     
-        let dateFilter = {};
+        var dateFilter = {};
+        var countFilter = {};
+
+        // Bu şekilde result dönmedi
+        // let countFilter = {};
+        // let dateFilter = {};
+        // countFilter.totalCount = { "$lt": params.maxCount, "$gt": params.minCount };
+        // dateFilter.createdAt = { "$gt": new Date(params.startDate), "$lt": new Date(params.endDate) };
+
         if(params.startDate) {
             dateFilter.createdAt = { "$gt": new Date(params.startDate) };
         } 
@@ -37,7 +45,6 @@ class DataService {
             }
         }
     
-        let countFilter = {};
         if(params.minCount) {
             countFilter.totalCount = { "$gt": params.minCount };
         }
@@ -51,10 +58,6 @@ class DataService {
             }
         }
 
-        // let countFilter = {};
-        // let dateFilter = {};
-        // countFilter.totalCount = { "$lt": params.maxCount, "$gt": params.minCount };
-        // dateFilter.createdAt = { "$gt": new Date(params.startDate), "$lt": new Date(params.endDate) };
     
          aggregate[1].$match.$and.push(dateFilter);
          aggregate[1].$match.$and.push(countFilter);
