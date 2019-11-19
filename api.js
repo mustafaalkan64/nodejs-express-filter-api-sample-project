@@ -1,9 +1,9 @@
 const express = require('express');
 const DataService = require('./service/DataService');
 
-const router = express.Router();
+const api = express.Router();
 
-router.post('/', async (request, response) => {
+api.post('/', async (request, response) => {
     try {
         const dataService = new DataService();
         const datas = await dataService.filterData(request.body);
@@ -28,4 +28,4 @@ router.post('/', async (request, response) => {
 
 });
 
-module.exports = router;
+module.exports = api;
