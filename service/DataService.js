@@ -1,4 +1,5 @@
 const Data = require('../model/Data');
+const util = require('util')
 
 class DataService {
 
@@ -14,15 +15,18 @@ class DataService {
             },
             {
                 "$match": {
-                    "$and": []
+                    "$and": [
+                    ]
                 }
             }
         ];
+
+        console.dir(params,{depth:null});
     
         let dateFilter = {};
         if(params.startDate) {
             dateFilter.createdAt = { "$gt": new Date(params.startDate) };
-        }
+        } 
     
         if(params.endDate) {
             if(dateFilter.createdAt) {
@@ -46,10 +50,15 @@ class DataService {
                 countFilter.totalCount = { "$lt": params.maxCount };
             }
         }
+
+        // let countFilter = {};
+        // let dateFilter = {};
+        // countFilter.totalCount = { "$lt": params.maxCount, "$gt": params.minCount };
+        // dateFilter.createdAt = { "$gt": new Date(params.startDate), "$lt": new Date(params.endDate) };
     
-        aggregate[1].$match.$and.push(dateFilter);
-        aggregate[1].$match.$and.push(countFilter);
-        return await Data.aggregate(aggregate).exec();
+         aggregate[1].$match.$and.push(dateFilter);
+         aggregate[1].$match.$and.push(countFilter);
+         return await Data.aggregate(aggregate).exec();
     }
 }
 
