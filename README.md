@@ -1,4 +1,4 @@
-# Nodejs Api Sample Project With Express.js
+# Nodejs Filter Data Api Sample Project With Express.js
 
 This project is a nodejs web application that ensures api endpoint to filter data from mongodb via express.js.
 
@@ -12,7 +12,7 @@ https://code.visualstudio.com/
 
 ### User Guide
 
-Befor you build and run your node js project, you need to install dependencies with below command. 
+Before you build and run your node js project, you need to install dependencies with below command. 
 
 ```
 npm install
@@ -97,7 +97,6 @@ If any error occurs you will get below response:
   "records": null
 }
 ```
-### Running the tests
 
 You can just type below command to terminal to run test.
 
