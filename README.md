@@ -10,7 +10,7 @@ https://desktop.github.com/
 
 https://code.visualstudio.com/
 
-### User Guide
+## User Guide
 
 Before you build and run your node js project, you need to install dependencies with below command. 
 
